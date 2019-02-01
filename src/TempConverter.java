@@ -13,9 +13,10 @@ public class TempConverter {
 
     public void convertTemps() {
         Boolean converter = true;
+
+        System.out.print("Convert [1]Farenheit to Celsius or [2]Farenheit to Kelvin: ");
+        int convertChoice = user.nextInt();
         while (converter) {
-            System.out.print("Convert [1]Farenheit to Celsius or [2]Farenheit to Kelvin: ");
-            int convertChoice = user.nextInt();
 
             try{
                 if (convertChoice == 1) {
@@ -42,25 +43,31 @@ public class TempConverter {
 
     public Integer convertFtoC() {
         Boolean statement = true;
+
+        System.out.print("Please insert a temperture in F or [exit] to leave ");
+
         while (statement) {
-            System.out.print("Please insert a temperture in F or [exit] to leave ");
+
             String temp = user.nextLine();
 
-                    if (temp.equals("exit")) {
+
+            if (temp.equals("exit")) {
                         readingConverterList();
                         System.out.println("\nThank you for using the Temp Converter!");
 
                         System.exit(0);
                     }
                 try {
-                    int temps = Integer.parseInt(temp);
                     if (temp.matches(exp)) {
+                        int temps = Integer.parseInt(temp);
                         convertedTemp = (temps - 32) * 5 / 9;
                         System.out.println(String.format("\n%s degrees Farenheit is %s degrees Celsius\n", temps, convertedTemp));
-
+                        statement = false;
                     }
-                } catch (NumberFormatException ex) {
+                } catch (Exception ex) {
                     System.out.println("Invalid format");
+                    ex.printStackTrace();
+                    System.exit(0);
                 }
 
             }
@@ -70,8 +77,10 @@ public class TempConverter {
         }
     public Double convertFtoK() {
         Boolean fTemp = true;
+
+        System.out.print("Please insert a temperture in F or [exit] to leave ");
         while (fTemp) {
-            System.out.print("Please insert a temperture in F or [exit] to leave ");
+
             String temp = user.nextLine();
 
                 if (temp.equals("exit")) {
@@ -81,13 +90,13 @@ public class TempConverter {
                     System.exit(0);
             }
             try {
-                int fToKTemps = Integer.parseInt(temp);
                 if (temp.matches(exp)) {
+                    int fToKTemps = Integer.parseInt(temp);
                     convertedKtemp = (fToKTemps - 32) * 5/9 + 273.15;
                     System.out.println(String.format("\n%s degrees Farenheit is %s degrees Kelvin\n", fToKTemps, convertedKtemp));
-
+                    fTemp = false;
                 }
-            }catch (NumberFormatException numEx) {
+            }catch (Exception numEx) {
                 System.out.println("Invalid format");
             }
         }
