@@ -91,7 +91,7 @@ public class TempConverter {
             }
             try {
                 if (temp.matches(exp)) {
-                    int fToKTemps = Integer.parseInt(temp);
+                    double fToKTemps = Double.parseDouble(temp);
                     convertedKtemp = (fToKTemps - 32) * 5/9 + 273.15;
                     System.out.println(String.format("\n%s degrees Farenheit is %s degrees Kelvin\n", fToKTemps, convertedKtemp));
                     fTemp = false;
@@ -103,13 +103,15 @@ public class TempConverter {
         return convertedKtemp;
     }
     public void readingConverterList() {
+        System.out.println("\nTemps converted from F to C:");
         for (int results : storingTemps) {
-            System.out.println(String.format("%s\n", results));
+            System.out.println(String.format("\n%s C\n",results));
         }
     }
     public void readingKConverterList() {
+        System.out.println("\nTemps converted from F to K:");
         for (double results : storingKTemps) {
-            System.out.println(String.format("%s\n", results));
+            System.out.println(String.format("\n%s K\n",results));
         }
     }
 
